@@ -10,19 +10,19 @@ int main(void)
     setlocale(LC_ALL, "portuguese");
     system("color 06");
 
-    //variavel que finaliza ou recomeça o cada case
+    //variavel que finaliza ou recomeÃ§a o cada case
     char continua;
     char continua_moda;
     char continua_mediana;
 
     system("cls");
     printf("------------------------------------------------------------------------------");
-    printf("\n***                           MÉDIA, MODA OU MEDIANA =)                    ***");
+    printf("\n***                           MÃ‰DIA, MODA OU MEDIANA =)                    ***");
     printf("\n------------------------------------------------------------------------------");
 
-    //alterna entre calculo de média, moda ou mediana
+    //alterna entre calculo de mÃ©dia, moda ou mediana
     int menu = -1;
-    printf("\n\n\nAperte 1 para calcular média aritmética");
+    printf("\n\n\nAperte 1 para calcular mÃ©dia aritmÃ©tica");
     printf("\nAperte 2 para calcular moda");
     printf("\nAperte 3 para calcular mediana");
     printf("\nAperte 0 para sair");
@@ -31,17 +31,18 @@ int main(void)
 
     fflush(stdin);
 
-
-    //função que atualiza a tela para a tela da média
-    void telaMedia(){
+    //funÃ§Ã£o que atualiza a tela para a tela da mÃ©dia
+    void telaMedia()
+    {
         system("cls");
         printf("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
-        printf("\n                   MÉDIA ARITMÉTICA");
+        printf("\n                   MÃ‰DIA ARITMÃ‰TICA");
         printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n\n\n");
     }
 
-    void telaMediana(){
+    void telaMediana()
+    {
         system("cls");
         printf("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n                          MEDIANA");
@@ -53,92 +54,93 @@ int main(void)
     {
         case 1:
             do{
-                //título
+                //tÃ­tulo
                 telaMedia();    //atualiza a tela
 
-
-                 //pede os dados do usuário
+                 //pede os dados do usuÃ¡rio
                 int n;
                 float soma = 0;
 
-                printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja fazer a média
+                printf("Quantos elementos? "); //pergunta com quantos elementos o usuÃ¡rio deseja fazer a mÃ©dia
                 scanf("%d", &n);
 
-                float listinha[n];  //cria a lista baseada no valor de elementos do usuário
+                float listinha[n];  //cria a lista baseada no valor de elementos do usuÃ¡rio
 
                 printf("Digite os dados: \n");
 
-                for (int i = 0; i < n; i++){        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
-                  printf("Digite o %d°: ", i + 1);
+                for (int i = 0; i < n; i++)
+                {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaÃ§o na lista
+                  printf("Digite o %dÂ°: ", i + 1);
                   scanf("%f", &listinha[i]);
                 }
 
                 telaMedia();                    //atualiza a tela
-                printf("Os elementos são: ");
+                printf("Os elementos sÃ£o: ");
 
-                for (int i = 0; i < n -1 ; i++){    //coloquei n-1 para não incluir o último elemento, pois eu quero que o último elemento seja diferente
+                for (int i = 0; i < n -1 ; i++)//coloquei n-1 para nÃ£o incluir o Ãºltimo elemento, pois eu quero que o Ãºltimo elemento seja diferente
+                {
 
                   printf("%.2f; ", listinha[i]);    //printa os termos da lista
                   soma += listinha[i];              //soma = soma + lista[indice]
                 }
-                soma += listinha[n-1];              //soma do último elemento
-                printf("%.2f.\n", listinha[n-1]);   //formatação do último elemento,
-                // essas duas coisas foram necessárias para que o último elemento fosse printado diferente
+                soma += listinha[n-1];              //soma do Ãºltimo elemento
+                printf("%.2f.\n", listinha[n-1]);   //formataÃ§Ã£o do Ãºltimo elemento,
+                // essas duas coisas foram necessÃ¡rias para que o Ãºltimo elemento fosse printado diferente
 
-                //calcuka e mostra o tamanho da lista com os dados brutos
+                //calcula e mostra o tamanho da lista com os dados brutos
                 int tamanho_lista = ARRAYLEN(listinha);
-                printf("\nSão %d elementos.\t\t A soma é: %.2f.\n\n", tamanho_lista, soma);
+                printf("\nSÃ£o %d elementos.\t\t A soma Ã©: %.2f.\n\n", tamanho_lista, soma);
 
-
-                //faz a média aritmetica dos dados da lista
+                //faz a mÃ©dia aritmetica dos dados da lista
                 float media_aritmetica;
                 if(tamanho_lista > 0)
                 {
                     media_aritmetica = (float)soma / tamanho_lista;
                 }
-                printf("\n- Média aritmetica = %.2f\n\n", media_aritmetica);
+                printf("\n- MÃ©dia aritmetica = %.2f\n\n", media_aritmetica);
 
-                //termina ou começa novamente o programa
+                //termina ou comeÃ§a novamente o programa
                 fflush(stdin);
-                printf("\n\n\nDeseja fazer uma nova média?(s/n) ");
+                printf("\n\n\nDeseja fazer uma nova mÃ©dia?(s/n) ");
                 scanf("%c", & continua);
             }while (continua == 115);
             break;
         case 2:
             do{
-                //título
+                //tÃ­tulo
                 system("cls");
                 printf("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 printf("\n                          MODA");
                 printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 printf("\n\n\n");
-                //termina ou começa novamente o programa
+
+                //termina ou comeÃ§a novamente o programa
                 fflush(stdin);
-                printf("\n\n\nDeseja fazer uma nova média?(s/n) ");
+                printf("\n\n\nDeseja fazer uma nova mÃ©dia?(s/n) ");
                 scanf("%c", & continua_moda);
             }while(continua_moda == 115);
 
         case 3:
             do{
-                //título
+                //tÃ­tulo
                 telaMediana();
-
-
-
 
                 int n;
 
-                printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja encontrar a mediana
+                printf("Quantos elementos? "); //pergunta com quantos elementos o usuÃ¡rio deseja encontrar a mediana
                 scanf("%d", &n);
+
                 float listinha[n];
                 printf("Digite os dados: \n");
 
-                for (int i = 0; i < n; i++){        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
-                  printf("Digite o %d°: ", i + 1);
+                for (int i = 0; i < n; i++)
+                {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaÃ§o na lista
+                  printf("Digite o %dÂ°: ", i + 1);
                   scanf("%f", &listinha[i]);
                 }
-                for (int i = 0; i < n; i++){            //esse aninhado de for testa número por número para saber a ordem entre eles... não me perguntem ao certo como funciona, ainda não entendi tbm KKKK
-                    for (int j = i + 1; j < n; j++){    //se quiserem pesquisar, o nome disso é "selection sort"
+
+                for (int i = 0; i < n; i++){            //esse aninhado de for testa nÃºmero por nÃºmero para saber a ordem entre eles... nÃ£o me perguntem ao certo como funciona, ainda nÃ£o entendi tbm KKKK
+                    for (int j = i + 1; j < n; j++){    //se quiserem pesquisar, o nome disso Ã© "selection sort"
                         if (listinha[i] > listinha[j]){
                             float a = listinha[i];
                             listinha[i] = listinha[j];
@@ -146,27 +148,29 @@ int main(void)
                         }
                     }
                 }
-                printf("\nO Rol dos números em ordem crescente é: \n");   //printa a nova lista com os números substituídos para a ordem correta
+                printf("\nO Rol dos nÃºmeros em ordem crescente Ã©: \n");   //printa a nova lista com os nÃºmeros substituÃ­dos para a ordem correta
                 for (int i = 0; i < n; ++i)
                     printf("|%.2f|   ", listinha[i]);
 
                 float mediana = 0.0;
                 int tamanho_lista = ARRAYLEN(listinha);
 
-                if (tamanho_lista % 2 == 0){
+                if (tamanho_lista % 2 == 0)
+                {
                     int a = tamanho_lista/2;
                     mediana = (listinha[a]+listinha[a - 1])/2;
                 }
-                else {
+                else
+                {
                     int a = tamanho_lista/2;
                     mediana = listinha[a];
                 }
 
-                printf("\n\nA mediana dos dados é: %.4f", mediana);
+                printf("\n\nA mediana dos dados Ã©: %.4f", mediana);
 
-                //termina ou começa novamente o programa
+                //termina ou comeÃ§a novamente o programa
                 fflush(stdin);
-                printf("\n\n\nDeseja fazer uma nova média?(s/n) ");
+                printf("\n\n\nDeseja fazer uma nova mÃ©dia?(s/n) ");
                 scanf("%c", & continua_mediana);
             }while(continua_mediana == 115);
             break;
@@ -174,8 +178,6 @@ int main(void)
         case 0:
             return 0;
     }
-
-
 
 
     } while (1); //1 = true... loop para sempre
