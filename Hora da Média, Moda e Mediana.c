@@ -31,9 +31,9 @@ int main(void)
 
     fflush(stdin);
 
-
     //função que atualiza a tela para a tela da média
-    void telaMedia(){
+    void telaMedia()
+    {
         system("cls");
         printf("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n                   MÉDIA ARITMÉTICA");
@@ -41,7 +41,8 @@ int main(void)
         printf("\n\n\n");
     }
 
-    void telaMediana(){
+    void telaMediana()
+    {
         system("cls");
         printf("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n                          MEDIANA");
@@ -56,7 +57,6 @@ int main(void)
                 //título
                 telaMedia();    //atualiza a tela
 
-
                  //pede os dados do usuário
                 int n;
                 float soma = 0;
@@ -68,7 +68,8 @@ int main(void)
 
                 printf("Digite os dados: \n");
 
-                for (int i = 0; i < n; i++){        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
+                for (int i = 0; i < n; i++)
+                {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
                   printf("Digite o %d°: ", i + 1);
                   scanf("%f", &listinha[i]);
                 }
@@ -76,7 +77,8 @@ int main(void)
                 telaMedia();                    //atualiza a tela
                 printf("Os elementos são: ");
 
-                for (int i = 0; i < n -1 ; i++){    //coloquei n-1 para não incluir o último elemento, pois eu quero que o último elemento seja diferente
+                for (int i = 0; i < n -1 ; i++)//coloquei n-1 para não incluir o último elemento, pois eu quero que o último elemento seja diferente
+                {
 
                   printf("%.2f; ", listinha[i]);    //printa os termos da lista
                   soma += listinha[i];              //soma = soma + lista[indice]
@@ -85,10 +87,9 @@ int main(void)
                 printf("%.2f.\n", listinha[n-1]);   //formatação do último elemento,
                 // essas duas coisas foram necessárias para que o último elemento fosse printado diferente
 
-                //calcuka e mostra o tamanho da lista com os dados brutos
+                //calcula e mostra o tamanho da lista com os dados brutos
                 int tamanho_lista = ARRAYLEN(listinha);
                 printf("\nSão %d elementos.\t\t A soma é: %.2f.\n\n", tamanho_lista, soma);
-
 
                 //faz a média aritmetica dos dados da lista
                 float media_aritmetica;
@@ -112,6 +113,7 @@ int main(void)
                 printf("\n                          MODA");
                 printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 printf("\n\n\n");
+
                 //termina ou começa novamente o programa
                 fflush(stdin);
                 printf("\n\n\nDeseja fazer uma nova média?(s/n) ");
@@ -123,20 +125,20 @@ int main(void)
                 //título
                 telaMediana();
 
-
-
-
                 int n;
 
                 printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja encontrar a mediana
                 scanf("%d", &n);
+
                 float listinha[n];
                 printf("Digite os dados: \n");
 
-                for (int i = 0; i < n; i++){        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
+                for (int i = 0; i < n; i++)
+                {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
                   printf("Digite o %d°: ", i + 1);
                   scanf("%f", &listinha[i]);
                 }
+
                 for (int i = 0; i < n; i++){            //esse aninhado de for testa número por número para saber a ordem entre eles... não me perguntem ao certo como funciona, ainda não entendi tbm KKKK
                     for (int j = i + 1; j < n; j++){    //se quiserem pesquisar, o nome disso é "selection sort"
                         if (listinha[i] > listinha[j]){
@@ -153,11 +155,13 @@ int main(void)
                 float mediana = 0.0;
                 int tamanho_lista = ARRAYLEN(listinha);
 
-                if (tamanho_lista % 2 == 0){
+                if (tamanho_lista % 2 == 0)
+                {
                     int a = tamanho_lista/2;
                     mediana = (listinha[a]+listinha[a - 1])/2;
                 }
-                else {
+                else
+                {
                     int a = tamanho_lista/2;
                     mediana = listinha[a];
                 }
@@ -174,8 +178,6 @@ int main(void)
         case 0:
             return 0;
     }
-
-
 
 
     } while (1); //1 = true... loop para sempre
