@@ -4,46 +4,27 @@
 
 int main(void)
 {
-    void tela_mru(x) //funcÁ„o que atualiza a tela junto com o menu para o programa MRU
+    void tela_mru(x) //func√ß√£o que atualiza a tela junto com o menu para o programa MRU
     {
+        system("cls");
+        printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
+        printf("\n              MOVIMENTO RET√çLINEO UNIFORME");
+        printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
 
-        if(x == 0)
-        {
-            system("cls");
-            printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n              MOVIMENTO RETÕLINEO UNIFORME");
-            printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-        }
         if(x == 1)
         {
-            system("cls");
-            printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n              MOVIMENTO RETÕLINEO UNIFORME");
-            printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n***                ESPA«O PERCORRIDO                     ***");
+            printf("\n***                ESPA√áO PERCORRIDO                     ***");
         }
         if(x == 2)
         {
-            system("cls");
-            printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n              MOVIMENTO RETÕLINEO UNIFORME");
-            printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n***                  POSI«√O INICIAL                     ***");
+            printf("\n***                  POSI√á√ÉO INICIAL                     ***");
         }
         if(x == 3)
         {
-            system("cls");
-            printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n              MOVIMENTO RETÕLINEO UNIFORME");
-            printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             printf("\n***                     VELOCIDADE                       ***");
         }
         if(x == 4)
         {
-            system("cls");
-            printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
-            printf("\n              MOVIMENTO RETÕLINEO UNIFORME");
-            printf("\n_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             printf("\n***                       TEMPO                          ***");
         }
     }
