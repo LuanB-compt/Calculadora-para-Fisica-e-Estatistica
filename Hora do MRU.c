@@ -2,13 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 
-int main(void)
-{
-    do{
-    setlocale(LC_ALL, "portuguese");
-    system("color 75");
-
-    void tela_mru(x) //funcção que atualiza a tela junto com o menu para o programa MRU
+void tela_mru(x) //funcção que atualiza a tela e faz o titulo para o programa MRU
     {
         system("cls");
         printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
@@ -33,7 +27,11 @@ int main(void)
         }
     }
 
-
+int main(void)
+{
+    do{
+    setlocale(LC_ALL, "portuguese");
+    system("color 75");
 
     //variavel de cada do while,  que está em todos os cases do switch
     char continua_mru1;
@@ -89,7 +87,7 @@ int main(void)
                     break;
                 }
 
-                printf("\n\nO ESPAÇO PERCORRIDO (S) foi: %.4f\n", espaco_percorrido); //printa na tela o resultado
+                printf("\n\nO ESPAÇO PERCORRIDO (S) foi: %.4f metros\n", espaco_percorrido); //printa na tela o resultado
                 printf("FÓRMULA: S = S0 + V * t\n"); //formula usada para o calculo
 
                 //termina ou começa novamente o programa
@@ -132,7 +130,7 @@ int main(void)
                     break;
                 }
 
-                printf("\n\nA POSIÇÃO INICIAL (S0) é: %.4f\n", posicao_inicial); //printa na tela o resultado
+                printf("\n\nA POSIÇÃO INICIAL (S0) é: %.4f metros\n", posicao_inicial); //printa na tela o resultado
                 printf("FÓRMULA: S0 = S - V * t\n"); //formula usada para o calculo
 
                 //termina ou começa novamente o programa
@@ -175,7 +173,7 @@ int main(void)
                     break;
                 }
 
-                printf("\n\nA VELOCIDADE (V) é: %.4f\n", velocidade); //printa na tela o resultado
+                printf("\n\nA VELOCIDADE (V) é: %.4f m/s\n", velocidade); //printa na tela o resultado
                 printf("FÓRMULA: V = (S - S0) / t\n"); //formula usada para o calculo
 
 
@@ -219,7 +217,7 @@ int main(void)
                     break;
                 }
 
-                printf("\n\nA TEMPO (t) foi de: %.4f\n", tempo); //printa o resultado
+                printf("\n\nA TEMPO (t) foi de: %.4f segundos\n", tempo); //printa o resultado
                 printf("FÓRMULA: t = (S0 - S) / V\n"); //formula usada para o calculo
 
                 //termina ou começa novamente o programa
