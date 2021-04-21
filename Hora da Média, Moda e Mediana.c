@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#define MAX 100
 #define ARRAYLEN(ar) sizeof(ar)/sizeof(ar[0])
 
-
-int main(void)
-{
-    do{
+int main(void){
+    system("color 0F");
     setlocale(LC_ALL, "portuguese");
+    MMM();
+}
+
+int MMM(void)
+{
     system("color 06");
+    do{
 
     //variavel que finaliza ou recomeça o cada case
     char continua;
@@ -16,9 +21,9 @@ int main(void)
     char continua_mediana;
 
     system("cls");
-    printf("------------------------------------------------------------------------------");
-    printf("\n***                           MÉDIA, MODA OU MEDIANA =)                    ***");
-    printf("\n------------------------------------------------------------------------------");
+    printf("-------------------------------------------------------------------------------\n");
+    printf("***                           MÉDIA, MODA OU MEDIANA =)                    ***\n");
+    printf("-------------------------------------------------------------------------------");
 
     //alterna entre calculo de média, moda ou mediana
     int menu = -1;
@@ -39,6 +44,7 @@ int main(void)
         printf("\n                   MÉDIA ARITMÉTICA");
         printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n\n\n");
+        fflush(stdin);
     }
 
     void telaMediana()
@@ -48,6 +54,7 @@ int main(void)
         printf("\n                          MEDIANA");
         printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         printf("\n\n\n");
+        fflush(stdin);
     }
 
     switch(menu)
@@ -113,12 +120,47 @@ int main(void)
                 printf("\n                          MODA");
                 printf("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 printf("\n\n\n");
+                fflush(stdin);
+
+                //codigo de criação da lista inicial
+                int n;
+                printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja encontrar a mediana
+                scanf("%d", &n);
+                float listinha[n];
+                printf("Digite os dados: \n");
+
+                //pega os dados do usuário
+                for (int i = 0; i < n; i++)
+                {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
+                  printf("Digite o %d°: ", i + 1);
+                  scanf("%f", &listinha[i]);
+                }
+
+                //codigo que utiliza variaveis para armazenar qual é a moda
+
+                float moda;
+                int aux2 = 0;
+                for (int i = 0; i < n; i++){
+                    int aux = 0;
+
+                    for (int j = 0; j < n; j++){
+                        if (listinha[i] == listinha[j]){
+                            aux++;
+                        }
+                    }
+                    if (aux >= aux2){
+                        aux2 = aux;
+                        moda = listinha[i];
+                    }
+                }
+                printf("\n\n A moda é %.2f\nO elemento aparece %d vezes", moda, aux2);
 
                 //termina ou começa novamente o programa
                 fflush(stdin);
-                printf("\n\n\nDeseja fazer uma nova média?(s/n) ");
+                printf("\n\n\nDeseja encontrar uma nova moda?(s/n) ");
                 scanf("%c", & continua_moda);
             }while(continua_moda == 115);
+            break;
 
         case 3:
             do{
@@ -178,8 +220,6 @@ int main(void)
         case 0:
             return 0;
     }
-
-
     } while (1); //1 = true... loop para sempre
     system("pause");
     return 0;

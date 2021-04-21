@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 
 int main(void)
 {
-    void tela_mru(x) //funcção que atualiza a tela junto com o menu para o programa MRU
+    setlocale(LC_ALL, "portuguese");
+
+    void tela_mru(x) //função que atualiza a tela junto com o menu para o programa MRU
     {
         system("cls");
         printf("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
