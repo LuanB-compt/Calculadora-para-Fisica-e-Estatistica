@@ -8,12 +8,12 @@
     system("cls");
     fflush(stdin);
     printf("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
-    printf("\n   MOVIMENTO RETILÍNEO UNIFORMEMENTE VARIADO");
+    printf("\n   MOVIMENTO RETIL�NEO UNIFORMEMENTE VARIADO");
     printf("\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
 
     if(x == 1)
     {
-        printf("\n***               ACELERAÇÃO               ***");
+        printf("\n***               ACELERA��O               ***");
     }
     if(x == 2)
     {
@@ -25,11 +25,11 @@
     }
     if(x == 4)
     {
-        printf("\n*** POSIÇÃO FINAL ***");
+        printf("\n*** POSI��O FINAL ***");
     }
     if(x == 5)
     {
-        printf("\n*** POSIÇÃO INICIAL ***");
+        printf("\n*** POSI��O INICIAL ***");
     }
     if(x == 6)
     {
@@ -52,11 +52,11 @@ int main(void)
     char continua_mruv6;
 
     int menu = -1;
-    printf("\n\n\n\nPara encontrar a ACELERAÇÃO (a) de um corpo ----> DIGITE 1");
+    printf("\n\n\n\nPara encontrar a ACELERA��O (a) de um corpo ----> DIGITE 1");
     printf("\nPara encontrar a VELOCIDADE FINAL (Vf) de um corpo ----> DIGITE 2");
     printf("\nPara encontrar a VELOCIDADE INICIAL (Vi) de um corpo ----> DIGITE 3");
-    printf("\nPara encontrar a POSIÇÃO FINAL (S) de um corpo ----> DIGITE 4");
-    printf("\nPara encontrar a POSIÇÃO INICIAL (Si) de um corpo ----> DIGITE 5");
+    printf("\nPara encontrar a POSI��O FINAL (S) de um corpo ----> DIGITE 4");
+    printf("\nPara encontrar a POSI��O INICIAL (Si) de um corpo ----> DIGITE 5");
     printf("\nPara encontrar a TEMPO (t) de um corpo ----> DIGITE 6");
     printf("\nPara sair ----> DIGITE 0");
     printf("\nDIGITE SUA ESCOLHA: ");
@@ -90,11 +90,11 @@ int main(void)
                     aceleracao = (velocidade_final - velocidade_inicial) / (tempo_final - tempo_inicial);
                 }
 
-                printf("\n\nA ACELERAÇÃO foi de: %.3f m/s^2", aceleracao);
-                printf("\nFÓRMULA: a = (Vf - Vi) / (tf - ti)\n"); //         a = âˆ†V / âˆ†t\n
+                printf("\n\nA ACELERA��O foi de: %.3f m/s^2", aceleracao);
+                printf("\nF�RMULA: a = (Vf - Vi) / (tf - ti)\n"); //         a = ∆V / ∆t\n
 
                 fflush(stdin);
-                printf("\nDeseja calcular uma nova ACELERAÇÃO?(s/n) ");
+                printf("\nDeseja calcular uma nova ACELERA��O?(s/n) ");
                 scanf("%c", & continua_mruv1);
             }while(continua_mruv1 == 115);
             break;
@@ -108,7 +108,7 @@ int main(void)
                 scanf("%f", & velocidade_inicial);
 
                 float aceleracao;
-                printf("Insira a ACELERAÇÃO (a) em METROS POR SEGUNDO ao quadrado: ");
+                printf("Insira a ACELERA��O (a) em METROS POR SEGUNDO ao quadrado: ");
                 scanf("%f", & aceleracao);
 
                 float tempo;
@@ -122,7 +122,7 @@ int main(void)
                 }
 
                 printf("\n\nA VELOCIDADE FINAL foi de: %.3f m/s", velocidade_final);
-                printf("\nFÓRMULA: Vf = Vi + a * t\n");
+                printf("\nF�RMULA: Vf = Vi + a * t\n");
 
                 fflush(stdin);
                 printf("\nDeseja calcular uma nova VELOCIDADE FINAL?(s/n) ");
@@ -139,7 +139,7 @@ int main(void)
                 scanf("%f", & velocidade_final);
 
                 float aceleracao;
-                printf("Insira a ACELERAÇÃO (a) em METROS POR SEGUNDO ao quadrado: ");
+                printf("Insira a ACELERA��O (a) em METROS POR SEGUNDO ao quadrado: ");
                 scanf("%f", & aceleracao);
 
                 float tempo;
@@ -153,7 +153,7 @@ int main(void)
                 }
 
                 printf("\n\nA VELOCIDADE INICIAL foi de: %.3f m/s", velocidade_inicial);
-                printf("\nFÓRMULA: Vi = Vf - a * t\n");
+                printf("\nF�RMULA: Vi = Vf - a * t\n");
 
                 fflush(stdin);
                 printf("\nDeseja calcular uma nova VELOCIDADE FINAL?(s/n) ");
@@ -166,7 +166,7 @@ int main(void)
                 menu_mruv(4);
 
                 float posicao_inicial;
-                printf("\n\n\nInsira a POSIÇÃO INICIAL (Si) em METROS: ");
+                printf("\n\n\nInsira a POSI��O INICIAL (Si) em METROS: ");
                 scanf("%f", & posicao_inicial);
 
                 float velocidade_inicial;
@@ -178,7 +178,7 @@ int main(void)
                 scanf("%f", & tempo);
 
                 float aceleracao;
-                printf("Insira a ACELERAÇÃO (a) em METROS POR SEGUNDO ao quadrado: ");
+                printf("Insira a ACELERA��O (a) em METROS POR SEGUNDO ao quadrado: ");
                 scanf("%f", & aceleracao);
 
                 float posicao_final;
@@ -195,11 +195,11 @@ int main(void)
                 else
                     printf("");
 
-                printf("\n\nA POSIÇÃO FINAL foi de: %.3f m", posicao_final);    //conferir se o resultado estÃ¡ certo
-                printf("\nFÓRMULA: S = Si + Vi * t + 1/2 * a * t^2\n");        //
+                printf("\n\nA POSI��O FINAL foi de: %.3f m", posicao_final);    //conferir se o resultado está certo
+                printf("\nF�RMULA: S = Si + Vi * t + 1/2 * a * t^2\n");        //
 
                 fflush(stdin);
-                printf("\nDeseja calcular uma nova POSIÇÃO FINAL?(s/n) ");
+                printf("\nDeseja calcular uma nova POSI��O FINAL?(s/n) ");
                 scanf("%c", & continua_mruv4);
             }while(continua_mruv4 == 115);
             break;
@@ -208,9 +208,9 @@ int main(void)
             do{
                 menu_mruv(5);
 
-                //aparecendo o que nÃ£o devia
+                //aparecendo o que não devia
                 float posicao_final;
-                printf("\n\n\nInsira a POSIÇÃO FINAL (S) em METROS: ");
+                printf("\n\n\nInsira a POSI��O FINAL (S) em METROS: ");
                 scanf("%f", & posicao_final);
 
                 float velocidade_inicial;
@@ -222,7 +222,7 @@ int main(void)
                 scanf("%f", & tempo);
 
                 float aceleracao;
-                printf("Insira a ACELERAÇÃO (a) em METROS POR SEGUNDO ao quadrado: ");
+                printf("Insira a ACELERA��O (a) em METROS POR SEGUNDO ao quadrado: ");
                 scanf("%f", & aceleracao);
 
                 float posicao_inicial;
@@ -237,11 +237,11 @@ int main(void)
                     posicao_inicial = posicao_final - (velocidade_inicial * tempo) - (aceleracao_2 * tempo_ao_quadrado);
                 }
 
-                printf("\n\nA POSIÇÃO INICIAL foi de: %.3f m", posicao_inicial);//conferir se o resultado estÃ¡ certo
-                printf("\nFÓRMULA: Si = S - Vi * t + 1/2 * a * t^2\n");
+                printf("\n\nA POSI��O INICIAL foi de: %.3f m", posicao_inicial);//conferir se o resultado está certo
+                printf("\nF�RMULA: Si = S - Vi * t + 1/2 * a * t^2\n");
 
                 fflush(stdin);
-                printf("\nDeseja calcular uma nova POSIÇÃO INICIAL (s/n) ");
+                printf("\nDeseja calcular uma nova POSI��O INICIAL (s/n) ");
                 scanf("%c", & continua_mruv5);
             }while(continua_mruv5 == 115);
             break;
@@ -259,17 +259,17 @@ int main(void)
                 scanf("%f", & velocidade_inicial);
 
                 float aceleracao;
-                printf("Insira a ACELERAÇÃO (a) em METROS POR SEGUNDO ao quadrado: ");
+                printf("Insira a ACELERA��O (a) em METROS POR SEGUNDO ao quadrado: ");
                 scanf("%f", & aceleracao);
 
                 float tempo;
                 tempo = (velocidade_final - velocidade_inicial) / aceleracao;
 
-                printf("\n\nO TEMPO foi de: %.3f m", tempo);//conferir se o resultado estÃ¡ certo
-                printf("\nFÓRMULA: t = (Vf - Vi) / a\n");
+                printf("\n\nO TEMPO foi de: %.3f m", tempo);//conferir se o resultado está certo
+                printf("\nF�RMULA: t = (Vf - Vi) / a\n");
 
                 fflush(stdin);
-                printf("\nDeseja calcular uma nova POSIÇÃO INICIAL (s/n) ");
+                printf("\nDeseja calcular uma nova POSI��O INICIAL (s/n) ");
                 scanf("%c", & continua_mruv6);
             }while(continua_mruv6 == 115);
             break;
