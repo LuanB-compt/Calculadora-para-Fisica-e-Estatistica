@@ -39,8 +39,8 @@
 
 int main(void)
 {
+    setlocale(LC_ALL,"portuguese");
     do{
-    setlocale(LC_ALL, "portuguese");
 
     menu_mruv();
 

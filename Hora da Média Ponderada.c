@@ -116,7 +116,7 @@ int main(void)
         printf("\n\nSua MÉDIA é de: %.2f\n", media);
 
         char termina;
-        while (termina != 99)
+        while (termina != 'c')
         {
             //system("cls");
             printf("\nDigíte C para continuar...\n");
