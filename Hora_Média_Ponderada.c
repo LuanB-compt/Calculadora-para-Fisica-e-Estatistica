@@ -3,21 +3,42 @@
 #include <locale.h>
 #include <math.h>
 
+void titulo_ponderada()
+    {
+        system("cls");
+        printf("------------------------------------------------------------------------------");
+        printf("\n***                           MÉDIA PONDERADA =)                           ***");
+        printf("\n------------------------------------------------------------------------------");
+        fflush(stdin);
+    }
+
 int main(void)
 {
     char continua;
+
     do{
         system("cls");
         setlocale(LC_ALL, "portuguese");
         system("color 17");
 
-        printf("------------------------------------------------------------------------------");
-        printf("\n***                           MÉDIA PONDERADA =)                           ***");
-        printf("\n------------------------------------------------------------------------------");
+        titulo_ponderada();
 
         //Recebe os pesos de cada nota
-        float peso1, peso2, peso3, peso4;
-        printf("\n\n\nQual o peso da 1° NOTA?");
+        int num_elementos;
+        printf("\n\n\nQuantos elementos terão: ");
+        scanf("%i", & num_elementos);
+
+        int i;
+        for(i = 0; i < num_elementos; i++)
+        {
+            printf("\nQual o peso do %i° elemento: ", i + 1);
+        }
+        float lista[num_elementos];
+
+
+
+        //float peso1, peso2, peso3, peso4;
+        /*printf("\n\n\nQual o peso da 1° NOTA?");
         printf("\nDigite aqui: ");
         scanf("%f", & peso1);
         fflush(stdin);
@@ -31,7 +52,7 @@ int main(void)
         fflush(stdin);
         printf("Qual o peso da 4° NOTA?");
         printf("\nDigite aqui: ");
-        scanf("%f", & peso4);
+        scanf("%f", & peso4);*/
         fflush(stdin);
 
         //Faz o cálculo de cada peso
