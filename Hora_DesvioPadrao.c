@@ -12,7 +12,7 @@ void titulo_desvio(x)
     printf("\n9696969696969696969696969696969696969969696969696969696969696");
     if(x == 1)
     {
-        printf("\n                VARIÂNCIA");
+        printf("\n                          VARIÂNCIA");
     }
 }
 
