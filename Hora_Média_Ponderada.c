@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <math.h>
-#include <string.h>
-#define ARRAYLEN(ar) sizeof(ar)/sizeof(ar[0])
 
 void titulo_ponderada()
     {
