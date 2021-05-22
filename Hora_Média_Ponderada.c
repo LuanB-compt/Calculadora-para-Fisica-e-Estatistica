@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <math.h>
+#include <string.h>
 #define ARRAYLEN(ar) sizeof(ar)/sizeof(ar[0])
 
 void titulo_ponderada()
@@ -15,123 +16,88 @@ void titulo_ponderada()
 
 int main(void)
 {
+    setlocale(LC_ALL, "portuguese");
     char continua;
 
     do{
-        system("cls");
-        setlocale(LC_ALL, "portuguese");
-        system("color 17");
+        //título
+        titulo_ponderada();    //atualiza a tela
+        printf("\n\n\n");
 
-        titulo_ponderada();
+        //pede os dados do usuário
+        int tamanho;
+        float media_ponderada = 0;
 
-
-        //recebe quantos elementos
-        //int num_elementos_dois;
-        int num_elementos;
-        printf("\n\n\nQuantos elementos terão: ");
-        scanf("%i", & num_elementos);
-        //num_elementos_dois = num_elementos;
-        //printf("%i", num_elementos_dois);
-
-
-
-        //Recebe os pesos de cada nota
-        float pesos[num_elementos];
-        int i;
+        printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja fazer a média
+        scanf("%d", &tamanho);
         printf("\n\n");
-        for(i = 0; i < num_elementos; i++)
+
+        //conta dos pesos
+        float pesos_total = 0;
+        float pesos[tamanho];
+        for(int i = 0; i < tamanho; i++)
         {
             printf("Qual o peso do %i° elemento: ", i + 1);
-            scanf("%f", & pesos[i]);
-            /*if(pesos[i] > 0)
-            {
-                pesos[i] = pesos[i] * 0.01;
-            }*/
+            scanf("%f", & pesos[i]); //recebe os pesos
             fflush(stdin);
-            //printf("%f\n", pesos[i]);
+            pesos_total += pesos[i]; //salva a soma de todos os pesos
         }
 
-
-        // transforma os pesos recebidos em decimal
-        for(i = 0; i < num_elementos; i++)
-        {
-            if(pesos[i] > 0)
-            {
-                pesos[i] = pesos[i] * 0.01;
-            }
-            printf("%f\n", pesos[i]);
-        }
-        system("pause");
-
-        /*for(i = 0; i < num_elementos; i++)
-        {
-            printf("%f\n", pesos[i]);
-        }*/
-
-
-
-        titulo_ponderada();
-
-
-
-
-        int tamanho = ARRAYLEN(pesos);
-        //printf("%i", tamanho);
-
-
-        //Recebe as notas (erro)
-        float nota_peso[tamanho];
-        float notas[tamanho];
-        printf("\n\n");
-        for(i = 0; i < tamanho; i++)
-        {
-            fflush(stdin);
-            printf("Qual o %i° elemento: ", i + 1);
-            scanf("%f", & notas[i]);
-            printf("\n\n%i", i);
-            /*if(notas > 0)
-            {
-                nota_porcentagem[i] = notas[i] * pesos[i];
-            }
-            printf("\n%f", & nota_porcentagem[i]);*/
+        //faz a proporção dos pesos com a soma total
+        for(int i = 0; i < tamanho; i++)
+        {   //não importa se a soma dos pesos tem de 100% ou menos que 100% (assim a proporção sempre é mantida)
+            pesos[i] = pesos[i] / pesos_total;
         }
 
-        for(i = 0; i < tamanho; i++)
-        {
-            if(notas > 0)
-            {
-                nota_peso[i] = notas[i] * pesos[i];
-            }
-            printf("\n%f", & nota_peso[i]);
+        //recebe os dados
+        float elementos[tamanho];  //cria a lista com tamanho de elementos que o usuário deu
+        printf("\nDigite os dados: \n");
+        for (int i = 0; i < tamanho; i++)
+        {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
+            printf("Digite o %d°: ", i + 1);
+            scanf("%f", &elementos[i]);
         }
 
+        titulo_ponderada();  //atualiza a tela
+        printf("\n\n\n");
 
-        //cálculo da média ponderada
-        float media;
-        float soma = 0;
-        i = 0;
-        for(i = 0; i < num_elementos; i++)
+        //mostra os dados brutos inseridos pelo usuário
+        printf("Os elementos brutos são: ");
+        for (int i = 0; i < tamanho -1 ; i++)//colocado n-1 para não incluir o último elemento, pois o último elemento seja diferente
         {
-            if(notas[i] >= 0)
-            {
-                soma = soma + nota_peso[i];
-            }
+            printf("%.2f; ", elementos[i]);    //printa os termos da lista
         }
-        printf("%f", soma);
-        system("pause");
+        printf("%.2f.\n", elementos[tamanho-1]);   //formatação do último elemento,
 
-        if(notas[i] >= 0)
+        //faz o calculo multiplicando cada elemento com seu devido peso
+        for (int i = 0; i < tamanho; i++)
         {
-            media = soma / num_elementos;
+            /*printf("listinha: %.2f\n", elementos[i]);
+            printf("peso: %.2f\n", pesos[i]);*/
+            elementos[i] = elementos[i] * pesos[i];
+            //printf("%f", listinha[i]);
         }
 
-        /*if(multi1 >= 0)
+        //pula linha
+        printf("\n\n\n");
+
+        //mostra os elementos já tratados depois da multiplicação
+        printf("Os elementos com suas proporções são: ");
+        for (int i = 0; i < tamanho -1 ; i++)//colocado n-1 para não incluir o último elemento, pois o último elemento seja diferente
         {
-            media = multi1 + multi2 + multi3 + multi4;
-        }*/
+            printf("%.2f; ", elementos[i]);    //printa os termos da lista
+            media_ponderada += elementos[i];              //soma = soma + lista[indice]
+        }
+        media_ponderada += elementos[tamanho-1];              //soma do último elemento
+        printf("%.2f.\n", elementos[tamanho-1]);   //formatação do último elemento,
+        // essas duas coisas foram necessárias para que o último elemento fosse printado diferente
 
-        printf("\n\nSua MÉDIA é de: %.2f\n", media);
+        //calcula e mostra o tamanho da lista com os dados brutos
+        printf("São %d elementos.\n\n", tamanho);
 
+        printf("\n- Média = %.2f\n\n", media_ponderada);
+
+        //trava a tela para o usuário prosseguir a hora que ele quiser
         char termina;
         while (termina != 'c')
         {
