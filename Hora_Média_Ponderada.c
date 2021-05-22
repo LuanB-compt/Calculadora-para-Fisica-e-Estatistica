@@ -53,7 +53,6 @@ int main(void)
 
 
         // transforma os pesos recebidos em decimal
-        i = 0;
         for(i = 0; i < num_elementos; i++)
         {
             if(pesos[i] > 0)
@@ -81,10 +80,9 @@ int main(void)
 
 
         //Recebe as notas (erro)
-        float nota_peso[num_elementos];
-        float notas[num_elementos];
+        float nota_peso[tamanho];
+        float notas[tamanho];
         printf("\n\n");
-        i = 0;
         for(i = 0; i < tamanho; i++)
         {
             fflush(stdin);
@@ -98,7 +96,6 @@ int main(void)
             printf("\n%f", & nota_porcentagem[i]);*/
         }
 
-        i = 0;
         for(i = 0; i < tamanho; i++)
         {
             if(notas > 0)
