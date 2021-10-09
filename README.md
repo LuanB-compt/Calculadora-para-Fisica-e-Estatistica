@@ -1,4 +1,4 @@
-# **Calculadora para Física e Estatística** | (sem-ponteiros)
+# **Calculadora para Física e Estatística**
 #### - O projeto consiste em um programa que faz cálculos estatísticos e matemáticos;
 #### - Repositório de um projeto em linguagem C, para controle de versionamento e organização;
 #### - Cada código representa uma parte do programa final;
