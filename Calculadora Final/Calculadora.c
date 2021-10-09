@@ -8,7 +8,7 @@
 int main(void)
 {
     system("color 0F");
-    setlocale(LC_ALL, "portuguese");
+    setlocale(LC_ALL, "");
     int menu_principal = -1;
     do{
         fflush(stdin);
