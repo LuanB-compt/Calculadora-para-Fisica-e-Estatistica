@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <stdbool.h>
 
 void screen_usm(int x, bool limpar);
 void screen_menu(int *num_choose);
 
-void space_travelled(char *continue_);
+void final_position(char *continue_);
 void starting_position(char *continue_);
 void velocity(char *continue_);
 void time(char *continue_);
@@ -14,7 +13,6 @@ void time(char *continue_);
 int main(void)
 {
     do{
-        setlocale(LC_ALL, "portuguese");
         system("color 75");
 
         // Variable of each while, that is in all the switch cases
@@ -25,13 +23,12 @@ int main(void)
         int menu = -1;
         screen_menu(&menu);
 
-        //leva para cada cálculo diferente
         // Take the user to each different calculus
         switch(menu){
             case 1:
                 do{
                     screen_usm(1, true);
-                    space_travelled(&continue_usm);
+                    final_position(&continue_usm);
 
                 }while(continue_usm == 121);
                 break;
@@ -41,7 +38,7 @@ int main(void)
                     screen_usm(2, true);
                     starting_position(&continue_usm);
 
-                }while (continue_usm == 115);
+                }while (continue_usm == 121);
                 break;
 
             case 3:
@@ -49,7 +46,7 @@ int main(void)
                     screen_usm(3, true);
                     velocity(&continue_usm);
 
-                }while (continue_usm == 115);
+                }while (continue_usm == 121);
                 break;
 
             case 4:
@@ -57,13 +54,13 @@ int main(void)
                     screen_usm(4, true);
                     time(&continue_usm);
 
-                }while(continue_usm == 115);
+                }while(continue_usm == 121);
                 break;
 
             case 0:
-                return 0;
+                return false;
         }
-    }while(1);
+    }while(true);
 
     system("pause");
     return 0;
@@ -97,7 +94,7 @@ void screen_usm(int x, bool clear)
 }
 
 void screen_menu(int *num_choose){
-    printf("\n\n\n\nIf you want to find the SPACE TRAVELLED (S) by the body     -----> PRESS 1");
+    printf("\n\n\n\nIf you want to find the FINAL POSITION (S) by the body      -----> PRESS 1");
     printf("\nIf you want to find the STARTING POSITION (S0) by the body  -----> PRESS 2");
     printf("\nIf you want to find the VELOCITY (V) by the body            -----> PRESS 3");
     printf("\nIf you want to find the TIME (t) of movement                -----> PRESS 4");
@@ -106,7 +103,7 @@ void screen_menu(int *num_choose){
     scanf("%d", num_choose);
 }
 
-void space_travelled(char *continue_){
+void final_position(char *continue_){
     // Receives the starting position to the calculus
     float posicao_inicial;
     printf("\n\n\n\nInsert the STARTING POSITION (S0) in METERS of the body: ");
@@ -126,124 +123,172 @@ void space_travelled(char *continue_){
     float espaco_percorrido;
     espaco_percorrido = posicao_inicial + (velocidade * tempo);
 
-    printf("\n\nTHE SPACE TRAVELLED (S) was: %.4f meters\n", espaco_percorrido);
+    printf("\n\nTHE FINAL POSITION (S) was: %.4f meters\n", espaco_percorrido);
     printf("FORMULA: S = S0 + V * t\n"); // Formula used for calculation
 
-    if(tempo == 0){
+    // Observations to help the user interpret the account result
+    if(tempo == 0 && velocidade == 0){
         printf("\nOBSERVATION:");
-        printf("\nYou insert the time=0, therefore, don't exist moviment and the body is in the same position\n\n\n");
+        printf("\nYou entered the time=0, therefore, don't exist movement and the body is in the same position");
+        printf("\nYou entered the velocity=0, therefore, don't exist movement and the body is in the same position\n");
+    }
+    else if(tempo < 0 && velocidade < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time<0, therefore, you are considering that the movement happen before the t=0");
+        printf("\nYou entered the velocity<0, therefore, the body is returning with respect to the zero position (S=0)\n");
+    }
+    else if(velocidade == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity=0, therefore, don't exist movement and the body is in the same position\n");
+    }
+    else if(tempo == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time=0, therefore, don't exist movement and the body is in the same position\n");
+    }
+    else if(velocidade < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity<0, therefore, the body is returning with respect to the zero position (S=0)\n");
+    }
+    else if(time < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time<0, therefore, you are considering that the movement happen before the t=0\n");
     }
 
     // Finish or start the program again
     fflush(stdin);
-    printf("Do you want do the calculus again?(y/n) ");
+    printf("\n\nDo you want do the calculus again?(y/n) ");
     scanf("%c", continue_);
 }
 
 void starting_position(char *continue_){
-    //recebe o espaço percorrido para a conta
+    // Receives the space travalled to the calculus
     float espaco_percorrido;
-    printf("\n\n\n\nInsira ESPAÇO PERCORRIDO (S) em METROS pelo corpo: ");
+    printf("\n\n\n\nInsert the FINAL POSITION (S) in METERS of the body: ");
     scanf("%f", & espaco_percorrido);
 
-    //recebe a velocidade para a conta
+    // Receives the velocity to the calculus
     float velocidade;
-    printf("Insira a VELOCIDADE (V) em METROS POR SEGUNDO do corpo: ");
+    printf("Insert the VELOCITY (V) in METERS PER SECOND of the body: ");
     scanf("%f", & velocidade);
 
-    //recebe o tempo para a conta
+    // Receives the time to the calculus
     float tempo;
-    printf("Insira o TEMPO (t) em SEGUNDOS que durou o movimento: ");
+    printf("Insert the TIME (t) in SECONDS that the movement lasted: ");
     scanf("%f", & tempo);
 
-    //calcula a posição inicial se o tempo e a velocidade forem diferentes que zero
+    // Calculates the starting position
     float posicao_inicial;
-    if(tempo != 0 && velocidade != 0){
-        posicao_inicial = espaco_percorrido - (velocidade * tempo);
+    posicao_inicial = espaco_percorrido - (velocidade * tempo);
+
+    printf("\n\nTHE STARTING POSITION (S0) is: %.4f meters\n", posicao_inicial);
+    printf("FÓRMULA: S0 = S - V * t\n"); // Formula used to calculation
+
+    // Observations to help the user interpret the account result
+    if(tempo == 0 && velocidade == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time=0, therefore, don't exist movement and the body is in the same position");
+        printf("\nYou entered the velocity=0, therefore, don't exist movement and the body is in the same position\n");
     }
-    else{
-        printf("\n\nALGUM VALOR DEVE TER SIDO INSIRIDO ERRADO, ESPERE 5 SEGUNDOS E TENTE NOVAMENTE...");
-        Sleep(5000);
-        //break;
+    else if(tempo < 0 && velocidade < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time<0, therefore, you are considering that the movement happen before the t=0");
+        printf("\nYou entered the velocity<0, therefore, the body is going to foward\n");
+    }
+    else if(velocidade == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity=0, therefore, don't exist movement and the body is in the same position\n");
+    }
+    else if(tempo == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time=0, therefore, don't exist movement and the body is in the same position\n");
+    }
+    else if(velocidade < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity<0, therefore, the body start in front and turn back\n");
+    }
+    else if(tempo < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time<0, therefore, you are considering that the body is going to back\n");
     }
 
-    printf("\n\nA POSIÇÃO INICIAL (S0) é: %.4f metros\n", posicao_inicial); //printa na tela o resultado
-    printf("FÓRMULA: S0 = S - V * t\n"); //formula usada para o calculo
-
-    //termina ou comeÃ§a novamente o programa
+    // Finish or start the program again
     fflush(stdin);
-    printf("Deseja fazer cálculo novamente?(s/n) ");
+    printf("\n\nDo you want do the calculus again?(y/n) ");
     scanf("%c", continue_);
 }
 
 void velocity(char *continue_){
-    //recebe o espaço percorrido para a conta
+    // Receives the space travelled to the calculus
     float espaco_percorrido;
-    printf("\n\n\n\nInsira ESPAÇO PERCORRIDO (S) em METROS pelo corpo: ");
+    printf("\n\n\n\nInsert the FINAL POSITION (S) in METERS of the body: ");
     scanf("%f", & espaco_percorrido);
 
-    //recebe a posição inicial para a conta
+    // Receives the starting position to the calculus
     float posicao_inicial;
-    printf("Insira a POSIÇÃO INICIAL (S0) METROS do corpo: ");
+    printf("Insert the STARTING POSITION (S0) in METERS of the body: ");
     scanf("%f", & posicao_inicial);
 
-    //recebe o tempo para a conta
+    // Receives the time to the calculus
     float tempo;
-    printf("Insira o TEMPO (t) em SEGUNDOS que durou o movimento: ");
+    printf("Insert the TIME (t) in SECONDS that the movement lasted: ");
     scanf("%f", & tempo);
 
-    //calcula a posiÃ§Ã£o inicial se o tempo e a velocidade forem diferentes que zero
+    // Calculates the velocity
     float velocidade;
-    if(tempo != 0 && espaco_percorrido != 0){
-        velocidade = (espaco_percorrido - posicao_inicial) / tempo;
+    velocidade = (espaco_percorrido - posicao_inicial) / tempo;
+
+    printf("\n\nTHE VELOCITY (V) is: %.4f m/s\n", velocidade);
+    printf("FORMULA: V = (S - S0) / t\n"); // Formula used to calculation
+
+    // Observations to help the user interpret the account result
+    if(tempo == 0 && posicao_inicial == espaco_percorrido){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time=0 and S=S0, therefore, don't exist movement and the body is in the same position\n");
     }
-    else{
-        printf("\n\nALGUM VALOR DEVE TER SIDO INSIRIDO ERRADO, ESPERE 5 SEGUNDOS E TENTE NOVAMENTE...");
-        Sleep(5000);
-        //break;
+    else if(tempo == 0 && posicao_inicial != espaco_percorrido){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time=0, and to exist velocity is necessary a time!=0\n");
+    }
+    else if(tempo < 0 && espaco_percorrido > posicao_inicial){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the time<0 and S>S0, therefore, you are considering that the body is going to back\n");
+    }
+    else if(tempo > 0 && posicao_inicial > espaco_percorrido){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered S0>S, therefore, the velocity is negative (the body is going back)\n");
     }
 
-    printf("\n\nA VELOCIDADE (V) é: %.4f m/s\n", velocidade); //printa na tela o resultado
-    printf("FÓRMULA: V = (S - S0) / t\n"); //formula usada para o calculo
-
-    //termina ou comeÃ§a novamente o programa
+    // Finish or start the program again
     fflush(stdin);
-    printf("Deseja fazer cálculo novamente?(s/n) ");
+    printf("\n\nDo you want do the calculus again?(y/n) ");
     scanf("%c", continue_);
 }
 
 void time(char *continue_){
-    //recebe a posição inicial para a conta
+    // Receives the starting position to the calculus
     float posicao_inicial;
-    printf("\n\n\n\nInsira a POSIÇÃO INICIAL (S0) METROS do corpo: ");
+    printf("\n\n\n\nInsert the STARTING POSITION (S0) in METERS of the body: ");
     scanf("%f", & posicao_inicial);
 
-    //recebe o espaço percorrido para a conta
+    // Receives the space travelled to the calculus
     float espaco_percorrido;
-    printf("Insira ESPAÇO PERCORRIDO (S) em METROS pelo corpo: ");
+    printf("Insert the FINAL POSITION (S) in METERS of the body: ");
     scanf("%f", & espaco_percorrido);
 
-    //recebe a velocidade para a conta
+    // Receives the velocity to the calculus
     float velocidade;
-    printf("Insira a VELOCIDADE (V) em METROS POR SEGUNDO do corpo: ");
+    printf("Insert the VELOCITY (V) in METERS PER SECOND of the body: ");
     scanf("%f", & velocidade);
 
-    //calcula a posição inicial se o tempo e a velocidade forem diferentes que zero
+    // Calculate the time
     float tempo;
-    if(velocidade != 0 && espaco_percorrido != 0){
-        tempo = (posicao_inicial - espaco_percorrido) / velocidade;
-    }
-    else{
-        printf("\n\nALGUM VALOR DEVE TER SIDO INSIRIDO ERRADO, ESPERE 5 SEGUNDOS E TENTE NOVAMENTE...");
-        Sleep(5000);
-        //break;
-    }
+    tempo = (posicao_inicial - espaco_percorrido) / velocidade;
 
-    printf("\n\nA TEMPO (t) foi de: %.4f segundos\n", tempo); //printa o resultado
-    printf("FÓRMULA: t = (S0 - S) / V\n"); //formula usada para o calculo
+    printf("\n\nTHE TIME (t) was: %.4f seconds\n", tempo);
+    printf("FORMULA: t = (S0 - S) / V\n"); // Formula used to calculation
 
-    //termina ou começa novamente o programa
+    // Finish or start the program again
     fflush(stdin);
-    printf("Deseja fazer cálculo novamente?(s/n) ");
+    printf("\n\nDo you want do the calculus again?(y/n) ");
     scanf("%c", continue_);
 }
