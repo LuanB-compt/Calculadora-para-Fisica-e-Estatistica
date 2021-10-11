@@ -64,7 +64,6 @@ int main(void)
 
 void screen_usm(int x, bool clear)
 {
-    /*Função que atualiza a tela junto com o menu para o programa MRU*/
     /*Function that update the screen with the menu to Program USM*/
 
     if(clear == true){
@@ -103,6 +102,8 @@ void screen_menu(int *num_choose){
 
 
 void calc_final_position(char *continue_, float *start_position_, float *final_position_, float *velocity_, float *time_){
+    /*Calculate the final position*/
+
     // Receives the starting position to the calculus
     printf("\n\n\n\nInsert the STARTING POSITION (S0) in METERS of the body: ");
     scanf("%f", start_position_);
@@ -115,7 +116,7 @@ void calc_final_position(char *continue_, float *start_position_, float *final_p
     printf("Insert the TIME (t) in SECONDS that the movement lasted: ");
     scanf("%f", time_);
 
-    // Calculates the space travelled
+    // Calculates the final position
     *final_position_ = *start_position_ + ((*velocity_) * (*time_));
 
     printf("\n\nTHE FINAL POSITION (S) was: %.4f meters\n", *final_position_);
@@ -156,6 +157,8 @@ void calc_final_position(char *continue_, float *start_position_, float *final_p
 }
 
 void calc_starting_position(char *continue_, float *start_position_, float *final_position_, float *velocity_, float *time_){
+    /*Calculates the starting position*/
+
     // Receives the space travalled to the calculus
     printf("\n\n\n\nInsert the FINAL POSITION (S) in METERS of the body: ");
     scanf("%f", final_position_);
@@ -209,6 +212,8 @@ void calc_starting_position(char *continue_, float *start_position_, float *fina
 }
 
 void calc_velocity(char *continue_, float *start_position_, float *final_position_, float *velocity_, float *time_){
+    /*Calculates the velocity*/
+
     // Receives the space travelled to the calculus
     printf("\n\n\n\nInsert the FINAL POSITION (S) in METERS of the body: ");
     scanf("%f", final_position_);
@@ -252,6 +257,8 @@ void calc_velocity(char *continue_, float *start_position_, float *final_positio
 }
 
 void calc_time(char *continue_, float *start_position_, float *final_position_, float *velocity_, float *time_){
+    /*Calculate the time*/
+
     // Receives the starting position to the calculus
     printf("\n\n\n\nInsert the STARTING POSITION (S0) in METERS of the body: ");
     scanf("%f", start_position_);
@@ -268,7 +275,20 @@ void calc_time(char *continue_, float *start_position_, float *final_position_, 
     *time_ = ((*final_position_) - (*start_position_)) / *velocity_;
 
     printf("\n\nTHE TIME (t) was: %.4f seconds\n", *time_);
-    printf("FORMULA: t = (S0 - S) / V\n"); // Formula used to calculation
+    printf("FORMULA: t = (S - S0) / V\n"); // Formula used to calculation
+
+    if(*velocity_ == 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity=0, therefore, don't exist movement and the body is in the same stopped position\n");
+    }
+    else if(*velocity_ < 0){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the velocity<0, therefore, the body start in front and turn back\n");
+    }
+    else if(*start_position_>*final_position_){
+        printf("\nOBSERVATION:");
+        printf("\nYou entered the S0>S, therefore, the body is going to back\n");
+    }
 
     // Finish or start the program again
     fflush(stdin);
