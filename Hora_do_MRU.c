@@ -62,8 +62,7 @@ int main(void)
     return 0;
 }
 
-void screen_usm(int x, bool clear)
-{
+void screen_usm(int x, bool clear){
     /*Function that update the screen with the menu to Program USM*/
 
     if(clear == true){

@@ -1,53 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <locale.h>
 
-void titulo_ponderada()
-    {
-        system("cls");
-        printf("------------------------------------------------------------------------------");
-        printf("\n***                           MÉDIA PONDERADA =)                           ***");
-        printf("\n------------------------------------------------------------------------------");
-        fflush(stdin);
-    }
+void screen_wa(bool clear);
 
-int main(void)
-{
+void recebe_pesos(int tamanho, float pesos, float pesos_total);
+
+int main(void){
     setlocale(LC_ALL, "portuguese");
     char continua;
+    int tamanho;
+    float media_ponderada = 0;
+    float pesos_total = 0;
+    float pesos[tamanho];
+    float elementos[tamanho];  //cria a lista com tamanho de elementos que o usuário deu
+    char termina;
 
     do{
-        //título
-        titulo_ponderada();    //atualiza a tela
+        screen_wa(true);
         printf("\n\n\n");
 
         //pede os dados do usuário
-        int tamanho;
-        float media_ponderada = 0;
-
         printf("Quantos elementos? "); //pergunta com quantos elementos o usuário deseja fazer a média
         scanf("%d", &tamanho);
         printf("\n\n");
 
-        //conta dos pesos
-        float pesos_total = 0;
-        float pesos[tamanho];
-        for(int i = 0; i < tamanho; i++)
-        {
-            printf("Qual o peso do %i° elemento: ", i + 1);
-            scanf("%f", & pesos[i]); //recebe os pesos
-            fflush(stdin);
-            pesos_total += pesos[i]; //salva a soma de todos os pesos
-        }
-
-        //faz a proporção dos pesos com a soma total
-        for(int i = 0; i < tamanho; i++)
-        {   //não importa se a soma dos pesos tem de 100% ou menos que 100% (assim a proporção sempre é mantida)
-            pesos[i] = pesos[i] / pesos_total;
-        }
+        recebe_pesos(tamanho, pesos, pesos_total);
 
         //recebe os dados
-        float elementos[tamanho];  //cria a lista com tamanho de elementos que o usuário deu
         printf("\nDigite os dados: \n");
         for (int i = 0; i < tamanho; i++)
         {        //for para coletar dado por dado e adiciona-lo em seu respectivo espaço na lista
@@ -55,7 +36,7 @@ int main(void)
             scanf("%f", &elementos[i]);
         }
 
-        titulo_ponderada();  //atualiza a tela
+        screen_wa(true);  //atualiza a tela
         printf("\n\n\n");
 
         //mostra os dados brutos inseridos pelo usuário
@@ -95,7 +76,6 @@ int main(void)
         printf("\n- Média = %.2f\n\n", media_ponderada);
 
         //trava a tela para o usuário prosseguir a hora que ele quiser
-        char termina;
         while (termina != 'c')
         {
             //system("cls");
@@ -112,4 +92,35 @@ int main(void)
     }while (continua == 115);
 
     return 0;
+}
+
+void screen_wa(bool clear){
+    /*Function that print the title on the screen*/
+
+    if(clear == true){
+        system("cls");
+    }
+
+    printf("------------------------------------------------------------------------------");
+    printf("\n***                          WEIGHTED AVERAGE =)                           ***");
+    printf("\n------------------------------------------------------------------------------");
+    fflush(stdin);
+}
+
+void recebe_pesos(int tamanho, float pesos[], float pesos_total){
+    pesos[tamanho];
+
+    //conta dos pesos
+    for(int i = 0; i < tamanho; i++){
+        printf("Qual o peso do %i° elemento: ", i + 1);
+        scanf("%f", & pesos[i]); //recebe os pesos
+        fflush(stdin);
+        pesos_total += pesos[i]; //salva a soma de todos os pesos
+    }
+
+    //faz a proporção dos pesos com a soma total
+    for(int i = 0; i < tamanho; i++){
+        //não importa se a soma dos pesos tem de 100% ou menos que 100% (assim a proporção sempre é mantida)
+        pesos[i] = pesos[i] / pesos_total;
+    }
 }
